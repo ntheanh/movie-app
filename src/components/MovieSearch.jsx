@@ -1,27 +1,7 @@
 import React, { useState } from "react"
-import Carousel from "react-multi-carousel"
-import "react-multi-carousel/lib/styles.css"
 import Modal from "react-modal"
 import YouTube from "react-youtube"
 
-const responsive = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 10
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1200 },
-    items: 7
-  },
-  tablet: {
-    breakpoint: { max: 1200, min: 600 },
-    items: 3
-  },
-  mobile: {
-    breakpoint: { max: 600, min: 0 },
-    items: 2
-  }
-}
 const opts = {
   height: "390",
   width: "640",
@@ -30,7 +10,7 @@ const opts = {
   }
 }
 
-const MovieList = ({ title, data }) => {
+const MovieSearch = ({ title, data }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [videoKey, setVideoKey] = useState("")
 
@@ -60,11 +40,9 @@ const MovieList = ({ title, data }) => {
       <div className="p-4 mb-4">
         <h2 className="uppercase font-semibold text-2xl">{title}</h2>
       </div>
-      <Carousel
-        className="flex items-center justify-start flex-wrap gap-5"
-        responsive={responsive}
-      >
-        {data && data.length > 0 &&
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-10 ">
+        {data &&
+          data.length > 0 &&
           data.map((item) => (
             <div
               key={item.id}
@@ -86,8 +64,7 @@ const MovieList = ({ title, data }) => {
               </div>
             </div>
           ))}
-      </Carousel>
-
+      </div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
@@ -113,4 +90,4 @@ const MovieList = ({ title, data }) => {
   )
 }
 
-export default MovieList
+export default MovieSearch

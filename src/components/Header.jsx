@@ -1,6 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 
-const Header = () => {
+const Header = ({ onSearch }) => {
+  const [textSearch, setSearch] = useState("")
   return (
     <div className="p-4 bg-black flex justify-between items-center">
       <div className="flex items-center space-x-4">
@@ -22,8 +23,15 @@ const Header = () => {
           type="text"
           placeholder="Search"
           className="p-2 rounded-lg border-none outline-none "
+          onChange={(e) => setSearch(e.target.value)}
+          value={textSearch}
         />
-        <button className="text-white bg-red-500 p-2 rounded-lg">Search</button>
+        <button
+          className="text-white bg-red-500 p-2 rounded-lg"
+          onClick={() => onSearch(textSearch)}
+        >
+          Search
+        </button>
       </div>
     </div>
   )
