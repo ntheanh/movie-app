@@ -4,6 +4,7 @@ import Banner from "./components/Banner"
 import MovieList from "./components/MovieList"
 import { useEffect, useState } from "react"
 import MovieSearch from "./components/MovieSearch"
+import { MovieProvider } from "./context/MovieProvider"
 
 function App() {
   const [movie, setMovie] = useState([])
@@ -63,16 +64,18 @@ function App() {
 
   return (
     <>
-      <Header onSearch={handleSearch} />
-      <Banner />
-      {movieSearch.length > 0 ? (
-        <MovieSearch title={"Ket qua tim kiem"} data={movieSearch} />
-      ) : (
-        <>
-          <MovieList title="Top 10 phim hay nhất" data={movie} />
-          <MovieList title="Phim hot" data={movie2} />
-        </>
-      )}
+      <MovieProvider>
+        <Header onSearch={handleSearch} />
+        <Banner />
+        {movieSearch.length > 0 ? (
+          <MovieSearch title={"Ket qua tim kiem"} data={movieSearch} />
+        ) : (
+          <>
+            <MovieList title="Top 10 phim hay nhất" data={movie} />
+            <MovieList title="Phim hot" data={movie2} />
+          </>
+        )}
+      </MovieProvider>
     </>
   )
 }
