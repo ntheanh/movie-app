@@ -43,8 +43,8 @@ function App() {
     <>
       <Header />
       <Banner />
-      <MovieList title="Top 10 phim hay nhất" data={movie.slice(0, 5)} />
-      <MovieList title="Phim hot" data={movie2.slice(0, 5)} />
+      <MovieList title="Top 10 phim hay nhất" data={movie} />
+      <MovieList title="Phim hot" data={movie2} />
     </>
   )
 }
